@@ -19,15 +19,15 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Jane Doe
+### Wu Qirui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/wuqirui.jpg" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/hhdqirui)]
+[[portfolio](team/wuqirui.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+* Role: Developer
+* Responsibilities: Dev
 
 ### Johnny Doe
 
