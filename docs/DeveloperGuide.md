@@ -255,6 +255,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | add a new person               |                                                                        |
 | `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
 | `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
+| `* * *`  | healthcare official with access to visits data from SafeEntry app   | add visit data to a list | generate desired lists and track contacts with the infected cases|
+| `* * *`  | healthcare official with access to the visit list| delete all visits by date | remove all the outdated visits inside the list |
 | `* * *`  | healthcare official setting up SafeEntry checkpoints | identify locations with high risk of infection | know which places need these checkpoints the most |
 | `* * *`  | healthcare official publishing daily reports | generate daily statistics quickly and easily|                                                         |
 | `* * *`  | healthcare official managing infected patient | update people's infection status | keep the current epidemic situation up to date |
@@ -290,7 +293,73 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-      
+
+
+**UC01 - Add a visit using Date, Location, Person**
+
+**MSS**
+
+1. User chooses to add a visit to the visits history list.
+2. VirusTracker requests for details of the visit in a specific format.
+3. User enters the required details (Person, Date, Location).
+4. VirusTracker updates the visits list and adds the new visit.
+5. VirusTracker acknowledges and displays the added visit
+      Use case ends.
+
+**Extensions**
+
+* 2a. The personId is invalid.
+         2a.1 VirusTracker prompts user for correct personId
+         2a.2 User re-enters details
+         2a.3 VirusTracker checks the personId
+         2a.1 - 2a.3 are repeated until the correct personId is provided
+         2a.4 VirusTracker updates the visits list and adds the new visit.
+         2a.5 VirusTracker acknowledges and displays the added visit 
+         Use case ends.
+
+* 2b. VirusTracker detects error in data format
+         2b.1 VirusTracker prompts user for correct personId
+         2b.2 User re-enters details
+         2b.3 VirusTracker checks the personId
+         2b.1 - 2b.3 are repeated until the correct personId is provided
+         2b.4 VirusTracker updates the visits list and adds the new visit.
+         2b.5 VirusTracker acknowledges and displays the added visit 
+         Use case ends
+
+* 2c. User wishes to cancel the add command
+         2c.1 User enters “Cancel”
+         2c.2 VirusTracker acknowledges and returns user to main page
+         Use case ends
+
+**UC02 - Delete visits by Date**
+
+**MSS**
+
+1. User chooses to clear the visit history before a date.
+2. VirusTracker requests for details of the date.
+3. User enters the required information of the date.
+4. VirusTracker updates the visits list and deletes the visits
+   up to the entered date.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The date is not contained in the visits list.
+      2a.1 VirusTracker prompts user for correct date
+      2a.2 User re-enters date
+      2a.3 VirusTracker checks the date entered
+      2a.1 - 2a.3 are repeated until the correct date is provided
+      2a.4 VirusTracker updates the visits list and deletes the visits up to the entered date.
+      2a.5 VirusTracker acknowledges and displays the added visit
+      Use case ends.
+
+* 2b. User wishes to cancel the add command
+         2b.1 User enters “Cancel”
+         2b.2 VirusTracker acknowledges and returns user to main page
+         Use case ends
+
+
 **UC06: View all infected people**
 
 **MSS**
@@ -299,13 +368,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. VirusTracker shows a list of all infected people.
 
     Use case ends.
-    
+
 **Extensions**
 
 * 2a. The list is empty.
 
   Use case ends.
-  
+
 **UC10: View high-risk locations**
 
 **MSS**
@@ -314,7 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2. VirusTracker shows a list of locations with high risk.
 
   Use case ends.
-  
+
 **Extensions**
 
 * 2a. The list is empty.
@@ -329,7 +398,7 @@ Use case ends.
 2. VirusTracker shows the statistics for that day.
 
   Use case ends.
-  
+
 **Extensions**
 
 * 2a. There is not enough information to produce statistics for that day.
